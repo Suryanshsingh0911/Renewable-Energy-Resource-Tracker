@@ -558,7 +558,7 @@
     btn.textContent='Creating account...'; btn.style.opacity='0.7'; btn.style.pointerEvents='none';
 
     try {
-      const res = await fetch('http://localhost:1000/api/auth/register', {
+      const res = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: fname + ' ' + lname, email, phone, password, location, role })

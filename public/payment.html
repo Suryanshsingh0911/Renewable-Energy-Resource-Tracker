@@ -285,8 +285,8 @@
 
     <!-- Buttons -->
     <div class="btn-row">
-      <button class="btn-cancel" id="cancelBtn">Cancel</button>
-      <button class="btn-pay" id="payBtn" onclick="handlePay(event)">Pay Now ₹<span id="btnAmt">10,200</span></button>
+      <button class="btn-cancel" id="cancelBtn" onclick="window.location.href='dashboard.html'">Cancel</button>
+      <button class="btn-pay" id="payBtn" onclick="handlePay(event)">Pay Now ₹<span id="btnAmt">0</span></button>
     </div>
 
     <!-- Session timer -->
@@ -376,8 +376,25 @@
     if(co2>=target) clearInterval(co2Interval);
   }, 40);
 
+  // Use actual intent data
+  const intent = JSON.parse(sessionStorage.getItem('buy_intent') || '{}');
+  const user = JSON.parse(sessionStorage.getItem('ecoUser') || '{}');
+  
+  if(intent.id) {
+    document.getElementById('pay-project-name').textContent = intent.name;
+    document.getElementById('pay-project-type').textContent = intent.type.toUpperCase();
+    
+    const baseAmount = intent.amount;
+    const feeAmount = Math.round(baseAmount * 0.02);
+    const totalAmount = baseAmount + feeAmount;
+    
+    document.getElementById('pay-amount').textContent = totalAmount.toLocaleString('en-IN');
+    document.getElementById('fee-amt').textContent = '₹' + feeAmount.toLocaleString('en-IN');
+    document.getElementById('btnAmt').textContent = totalAmount.toLocaleString('en-IN');
+  }
+
   // Pay button ripple + success
-  function handlePay(e){
+  async function handlePay(e){
     const btn = document.getElementById('payBtn');
     const r = document.createElement('span');
     r.className='ripple';
@@ -391,22 +408,32 @@
     btn.style.opacity='0.7';
     btn.style.pointerEvents='none';
 
-    setTimeout(()=>{
+    try {
+      if(intent.id && user.id) {
+        const total = intent.amount + Math.round(intent.amount * 0.02);
+        const res = await fetch('/api/transactions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ buyerId: user.id, projectId: intent.id, amountINR: total })
+        });
+        if (!res.ok) throw new Error('Payment failed');
+      }
+      
       document.getElementById('formArea').style.display='none';
       const ss = document.getElementById('successScreen');
       ss.style.display='flex';
       document.getElementById('txnId').textContent = Math.random().toString(36).substring(2,10).toUpperCase();
       clearInterval(timerInterval);
-    }, 1800);
+      
+      setTimeout(()=>{ window.location.href = 'dashboard.html'; }, 3000);
+    } catch (err) {
+      alert('Payment failed: ' + err.message);
+      btn.textContent='Pay Now';
+      btn.style.opacity='1';
+      btn.style.pointerEvents='auto';
+    }
   }
 
-  // Fee calculation (demo values)
-  const base = 10000;
-  const fee = Math.round(base * 0.02);
-  const total = base + fee;
-  document.getElementById('fee-amt').textContent = '₹' + fee.toLocaleString('en-IN');
-  document.getElementById('pay-amount').textContent = total.toLocaleString('en-IN');
-  document.getElementById('btnAmt').textContent = total.toLocaleString('en-IN');
 </script>
 
 </body>

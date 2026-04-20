@@ -151,11 +151,11 @@
     <button class="btn" id="loginBtn">Login</button>
     <div class="divider"><span>or continue with</span></div>
     <div class="social-row">
-      <button class="social-btn">Google</button>
-      <button class="social-btn">GitHub</button>
+      <button class="social-btn" onclick="alert('Google login is not implemented yet')">Google</button>
+      <button class="social-btn" onclick="alert('GitHub login is not implemented yet')">GitHub</button>
     </div>
     <div class="eco-tip">🌿 <span id="ecoTip">This server runs on 100% renewable energy.</span></div>
-    <p class="footer">Don't have an account? <a href="#">Sign up</a></p>
+    <p class="footer">Don't have an account? <a href="register.html">Sign up</a></p>
   </div>
 </div>
 
@@ -249,7 +249,7 @@
     btn.textContent='Loading...'; btn.style.pointerEvents='none';
     
     try {
-      const res = await fetch('http://localhost:1000/api/auth/login', {
+      const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })

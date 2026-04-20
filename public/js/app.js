@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:1000/api';
+const API_URL = '/api';
 
 // --- AUTH & STATE ---
 function setAuth(token, user) {

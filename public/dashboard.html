@@ -555,7 +555,7 @@ let projects = [];
 
 async function fetchProjects() {
   try {
-    const res = await fetch('http://localhost:1000/api/projects');
+    const res = await fetch('/api/projects');
     const data = await res.json();
     projects = data.map(p => ({
       id: p._id, name: p.name, type: p.energyType, location: p.locationId ? (p.locationId.name || p.locationId) : 'Unknown',
@@ -767,7 +767,7 @@ async function addProject() {
     createdBy: user.id
   };
   try {
-    const res = await fetch('http://localhost:1000/api/projects', {
+    const res = await fetch('/api/projects', {
       method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)
     });
     if(res.ok) {
@@ -800,7 +800,7 @@ async function saveEdit() {
     pricePerKWh: parseFloat(document.getElementById('edit-p-price').value)
   };
   try {
-    const res = await fetch('http://localhost:1000/api/projects/'+id, {
+    const res = await fetch('/api/projects/'+id, {
       method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)
     });
     if(res.ok) {
@@ -814,7 +814,7 @@ async function saveEdit() {
 async function deleteProject(id) {
   if(!confirm('Delete this project?')) return;
   try {
-    await fetch('http://localhost:1000/api/projects/'+id, { method:'DELETE' });
+    await fetch('/api/projects/'+id, { method:'DELETE' });
     fetchProjects();
     showToast('Project removed');
   } catch(e) { console.error(e); }
@@ -882,7 +882,7 @@ function investProject(id, name, type, amount) {
 
 async function loadHistory() {
   try {
-    const res = await fetch('http://localhost:1000/api/transactions?buyerId='+user.id);
+    const res = await fetch('/api/transactions?buyerId='+user.id);
     const data = await res.json();
     const grid = document.getElementById('history-grid');
     grid.innerHTML = '';
