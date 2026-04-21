@@ -25,8 +25,9 @@
       background: rgba(5, 46, 43, 0.95);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(100,116,139,0.2);
-      padding: 14px 28px;
+      padding: 14px 20px;
       display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap;
       gap: 16px;
     }
     .logo { display: flex; align-items: center; gap: 10px; }
@@ -34,7 +35,7 @@
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
     .logo-text { font-size: 18px; font-weight: 700; color: #22d3a5; letter-spacing: -0.5px; }
 
-    .header-right { display: flex; align-items: center; gap: 12px; }
+    .header-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; }
     .user-pill {
       display: flex; align-items: center; gap: 8px;
       background: rgba(34,211,165,0.08);
@@ -58,7 +59,7 @@
     .btn-logout:hover { color: #f87171; border-color: #f87171; }
 
     /* MAIN */
-    main { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: 32px 24px; flex: 1; width: 100%; }
+    main { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: 20px 16px; flex: 1; width: 100%; overflow-x: hidden; }
 
     /* WELCOME */
     .welcome-bar {
@@ -324,7 +325,7 @@
   </div>
   <div class="header-right">
     <div class="live-badge"><div class="live-dot"></div>Live Data</div>
-    <div style="display:flex;gap:12px;margin-right:20px;">
+    <div style="display:flex;gap:8px;margin-right:10px;flex-wrap:wrap;justify-content:center;">
       <button class="btn-sm btn-toggle" id="tab-btn-dash" style="background:rgba(34,211,165,0.2);color:#22d3a5;" onclick="switchTab('dash')">Dashboard</button>
       <button class="btn-sm btn-toggle" id="tab-btn-proj" onclick="switchTab('proj')">Projects</button>
       <button class="btn-sm btn-toggle" id="tab-btn-hist" style="display:none;" onclick="switchTab('hist')">History</button>
