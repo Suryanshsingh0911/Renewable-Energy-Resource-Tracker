@@ -20,6 +20,3 @@ Desktop.ini
 /test-output
 # Ignore temporary files
 /tmp
-# Ignore lock files
-package-lock.json
-yarn.lock
