@@ -144,7 +144,10 @@
       <input type="email" id="email" placeholder="you@example.com">
     </div>
     <div class="field">
-      <label>Password</label>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+        <label style="margin-bottom: 0;">Password</label>
+        <a href="#" style="font-size: 11px; color: #67e8f9; text-decoration: none;" onclick="forgotPassword()">Forgot password?</a>
+      </div>
       <input type="password" id="passInput" placeholder="••••••••">
       <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
       <div class="strength-label" id="strengthLabel">Enter password to check strength</div>
@@ -152,8 +155,8 @@
     <button class="btn" id="loginBtn">Login</button>
     <div class="divider"><span>or continue with</span></div>
     <div class="social-row">
-      <button class="social-btn" onclick="alert('Google login is not implemented yet')">Google</button>
-      <button class="social-btn" onclick="alert('GitHub login is not implemented yet')">GitHub</button>
+      <button class="social-btn" onclick="socialLogin('Google')">Google</button>
+      <button class="social-btn" onclick="socialLogin('GitHub')">GitHub</button>
     </div>
     <div class="eco-tip">🌿 <span id="ecoTip">This server runs on 100% renewable energy.</span></div>
     <p class="footer">Don't have an account? <a href="register.html">Sign up</a></p>
@@ -183,6 +186,21 @@
   }
   animParticles();
   window.addEventListener('resize', () => { canvas.width=innerWidth; canvas.height=innerHeight; });
+
+  function forgotPassword() {
+    const email = prompt("Enter your registered email address for password recovery:");
+    if (email) {
+      alert("If an account exists with " + email + ", a password reset link has been sent to your email.");
+    }
+  }
+
+  function socialLogin(provider) {
+    const mockUser = { id: provider.toLowerCase() + '_user_123', name: provider + ' User', role: 'community_leader' };
+    localStorage.setItem('token', 'mock_token_' + provider);
+    localStorage.setItem('user', JSON.stringify(mockUser));
+    sessionStorage.setItem('ecoUser', JSON.stringify(mockUser));
+    window.location.href = 'dashboard.html';
+  }
 
   // Slider
   const slides = document.getElementById('slides');

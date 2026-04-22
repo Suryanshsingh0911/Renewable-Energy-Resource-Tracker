@@ -477,6 +477,16 @@
     const rect=btn.getBoundingClientRect();
     r.style.left=(e.clientX-rect.left-10)+'px'; r.style.top=(e.clientY-rect.top-10)+'px';
     btn.appendChild(r); setTimeout(()=>r.remove(),700);
+    
+    if(from === 3) {
+      const mockOtp = Math.floor(100000 + Math.random() * 900000).toString();
+      alert("Since email sending is not configured, your simulated OTP is: " + mockOtp);
+      setTimeout(() => {
+        const boxes = document.querySelectorAll('.otp-box');
+        boxes.forEach((box, i) => { box.value = mockOtp[i]; });
+      }, 500);
+    }
+    
     if(from<4) showStep(from+1);
   }
   function prevStep(from){ if(from>1) showStep(from-1); }

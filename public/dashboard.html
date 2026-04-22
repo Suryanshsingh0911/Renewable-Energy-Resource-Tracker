@@ -636,7 +636,11 @@ function renderProjects() {
     
     // UI Logic: Invest only for community leader
     if(userRole === 'community_leader' || userRole === 'community leader') {
-      btns += `<button class="btn-proj btn-invest" onclick="investProject('${p.id}', '${p.name.replace(/'/g, "&apos;")}', '${p.type}', ${p.capacity*p.price})">Invest</button>`;
+      if (p.status === 'active') {
+        btns += `<button class="btn-proj btn-invest" onclick="investProject('${p.id}', '${p.name.replace(/'/g, "&apos;")}', '${p.type}', ${p.capacity*p.price})">Invest</button>`;
+      } else {
+        btns += `<button class="btn-proj btn-edit" style="cursor: not-allowed; opacity: 0.5;" onclick="alert('Investment is not allowed for inactive projects.')">Invest</button>`;
+      }
     }
     // UI Logic: Edit/Delete only for provider of their own project, or admin
     const canEdit = (userRole === 'energy_provider' || userRole === 'energy provider') && (p.createdBy === user.id);
