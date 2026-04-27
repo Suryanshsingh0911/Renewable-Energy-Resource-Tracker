@@ -1,186 +1,91 @@
-🌱 Renewable Energy Resource Tracker
-A full-stack web application to track, manage, and analyze renewable energy resources** such as solar, wind, and hydro systems. The platform provides real-time insights, project management, and energy tracking with an interactive dashboard.
+# 🌍 Renewable Energy Resource Tracker for Communities
 
+**Empowering communities to track, manage, and optimize renewable energy resources.**
 
-🚀 Overview
+The Renewable Energy Resource Tracker is a robust platform designed for communities, energy providers, and local leaders. It provides a centralized, interactive dashboard to monitor renewable energy projects, track real-time generation and usage, and drive sustainable initiatives—all in one place.
 
-The Renewable Energy Resource Tracker is designed to solve the problem of fragmented and inefficient energy monitoring systems. It offers a centralized platform where users can:
+---
 
- Manage renewable energy projects
- Track energy production
- Monitor performance metrics
- Handle transactions and payments
- Visualize insights through dashboards
+## ✨ Features
 
+### 🔐 **Secure Access & Validation**
+- **Role-Based Access**: Energy providers and community leaders register and validate participation via a unique ID system.
+- **Eco-Friendly Login**: A clean, modern authentication interface that tracks your daily carbon footprint savings right from the start.
 
-✨ Features
+### 📊 **Community Energy Dashboard**
+- **Real-Time Analytics**: Monitor Total Generation, Total Usage, Grid Storage levels, and overall CO₂ saved.
+- **Interactive Visualizations**: View Generation vs. Usage trends through dynamic line charts and understand the community's Energy Mix (Solar, Wind, Hydro, Biomass) with intuitive donut charts.
 
- 🔐 User Authentication (Login/Register)
- ⚡ Energy Production Tracking (Energy Logs)
- 🌍 Project Management (Solar/Wind/Hydro)
- 📍 Location-based tracking
- 💳 Transaction & Payment Management
- 📊 Interactive Dashboard with insights
- 🔄 RESTful API architecture
- 📱 Responsive frontend design
+### ⚡ **Project Tracking & Management**
+- **Manage Projects**: Easily view, add, edit, and monitor the status of various renewable energy projects across the community.
+- **Advanced Filtering**: Filter energy projects based on the type of energy (Solar, Wind, Hydro, Biomass), location, and operational status (Active/Inactive).
+- **Project Details**: Get instant insights into capacity (KW), pricing (₹/KWh), and current generation metrics for each specific project.
 
+### 🌓 **Modern & Responsive UI**
+- **Dark/Light Mode**: Seamlessly switch between light and dark themes to suit your viewing preference.
+- **Accessible Design**: Built with a responsive, premium interface that looks beautiful on any device.
 
-🧠 Tech Stack
+---
 
-💻 Frontend
- HTML5
- CSS3
- JavaScript
+## 🚀 Live Demo
 
-⚙️ Backend
-  Node.js
-  Express.js
+**Experience the platform live:**
+🔗 **[Renewable Energy Resource Tracker](https://renewable-energy-resource-tracker.onrender.com/)**
 
-🗄️ Database
-   MongoDB
-   Mongoose
+---
 
-🛠️ Tools
-   Git & GitHub
-   Postman (API Testing)
-   VS Code
+## 📸 Screenshots
 
+<p align="center">
+  <img src="screenshots/login.png" width="400" alt="Login Page" />
+  <img src="screenshots/analytics.png" width="400" alt="Community Energy Dashboard" />
+</p>
+<p align="center">
+  <img src="screenshots/dashboard.png" width="400" alt="Projects Overview - Light" />
+  <img src="screenshots/projects-dark.png" width="400" alt="Projects Overview - Dark" />
+</p>
 
-📁 Project Structure
-Renewable-Energy-Resource-Tracker/
-│── models/
-│   ├── User.js              # User schema (auth system)
-│   ├── Project.js           # Energy projects
-│   ├── EnergyLog.js         # Energy production data
-│   ├── Transaction.js       # Payments & transactions
-│   └── Location.js          # Location details
-│
-│── routes/
-│   ├── authRoutes.js        # Login & register APIs
-│   ├── projectRoutes.js     # Project management APIs
-│   └── transactionRoutes.js # Transaction APIs
-│
-│── public/
-│   ├── index.html           # Landing page
-│   ├── login.html           # Login page
-│   ├── register.html        # Register page
-│   ├── dashboard.html       # User dashboard
-│   ├── payment.html         # Payment UI
-│   └── js/
-│       ├── app.js           # Frontend logic
-│       └── speed-insights.js
-│
-│── server.js                # Main server file
-│── seed.js                  # Sample data generator
-│── check_db.js              # DB connection check
-│── run_pup.js               # Automation/testing script
-│── test_map.js              # Testing
-│── test_render.js           # Testing
-│── package.json             # Dependencies
-│── README.md
+---
 
+## 🛠 Tech Stack
 
+- **Frontend**: HTML5, CSS3, JavaScript (Chart.js for visualizations)
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (Atlas) for secure data storage of users, projects, and transactions
+- **Deployment**: Render
 
+---
 
-⚙️ Installation & Setup
+## 📦 Local Installation
 
-1️⃣ Clone the Repository
-git clone https://github.com/Suryanshsingh0911/Renewable-Energy-Resource-Tracker.git
-cd Renewable-Energy-Resource-Tracker
+To run this project locally on your machine:
 
+1. **Clone the repository** (or download the source code).
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+3. **Set up environment variables**:
+   Create a `.env` file in the root directory and add your MongoDB connection string:
+   ```env
+   MONGO_URI=your_mongodb_connection_string
+   PORT=3000
+   ```
+4. **Seed the database** (Optional, for initial data):
+   ```bash
+   node seed.js
+   ```
+5. **Start the server**:
+   ```bash
+   node server.js
+   ```
+6. **Open your browser** and navigate to `http://localhost:3000`.
 
-2️⃣ Install Dependencies
-npm install
+---
 
-3️⃣ Setup Environment Variables
-Create a .env file in root:
+## 🔒 Privacy & Security
+The platform uses robust authentication and validation. User credentials and community project data are securely stored and managed using MongoDB Atlas. Role-based unique IDs ensure that only authorized community leaders and providers can modify project states.
 
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
+---
 
-4️⃣ Run the Server
-npm start
-
-Server will run at:
-http://localhost:5000
-
-
-🔌 API Endpoints
-
-🔐 Authentication
-
-  POST /api/auth/register → Register user
-  POST /api/auth/login → Login user
-
-🌍 Projects
-
-   GET /api/projects → Get all projects
-   POST /api/projects → Create project
-   PUT /api/projects/:id → Update project
-   DELETE /api/projects/:id → Delete project
-
- 💳 Transactions
- 
-   GET /api/transactions → Get all transactions
-   POST /api/transactions → Add transaction
-
-
-📊 System Workflow
-
-1. User registers/logs in
-2. Creates renewable energy projects
-3. Adds energy production logs
-4. System stores data in MongoDB
-5. Dashboard displays analytics & insights
-6. Transactions are recorded and managed
-
-
-📈 Future Enhancements
-
- 🔗 IoT integration for real-time energy sensors
- 🤖 AI-based energy prediction
- 📱 Mobile application
- 🔐 Advanced authentication (JWT/OAuth)
- 📊 Advanced analytics & charts
-
-
-🧪 Testing & Utilities
- seed.js → Populate database with sample data
- check_db.js → Verify DB connection
- test_map.js, test_render.js → Debug/testing scripts
- run_pup.js → Automation (Puppeteer-based)
-
-
-
-🤝 Contributing
-
-Contributions are welcome!
-
-1. Fork the repository
-2. Create a new branch
-3. Commit changes
-4. Push to GitHub
-5. Open a Pull Request
-
-
-📄 License
-  This project is licensed under the MIT License.
-
-
-👨‍💻 Author
-  Suryansh Singh
- 🔗 https://github.com/Suryanshsingh0911
-
-
-
-⭐ Support
-If you found this project useful:
-
-⭐ Star the repository
-🍴 Fork it
-📢 Share it
-
-
-💡 Final Note
-  This project demonstrates how modern full-stack development can be used to solve real-world problems in renewable energy monitoring and sustainability.
-
+**Developed for a greener, sustainable future. 🌱**
